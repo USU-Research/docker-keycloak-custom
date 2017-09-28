@@ -17,7 +17,7 @@ fi
 
 if [ -e $IMPORT_FILE ] ; then
     mv $IMPORT_FILE used-${IMPORT_FILE}
-    exec /opt/jboss/keycloak/bin/standalone.sh -Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=inuse-${IMPORT_FILE}
+    exec /opt/jboss/keycloak/bin/standalone.sh -Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=used-${IMPORT_FILE}
 fi
 
 if [ $KEYCLOAK_USER ] && [ $KEYCLOAK_PASSWORD ]; then
