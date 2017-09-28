@@ -15,9 +15,9 @@ if [ $EXPORT_FILE ] ; then
     exec /opt/jboss/keycloak/bin/standalone.sh -Dkeycloak.migration.action=export -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=$EXPORT_FILE
 fi
 
-if [ $IMPORT_FILE ] ; then
-    exec /opt/jboss/keycloak/bin/standalone.sh -Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=$IMPORT_FILE
-    rm $IMPORT_FILE
+if [ -e $IMPORT_FILE ] ; then
+    mv $IMPORT_FILE used-${IMPORT_FILE}
+    exec /opt/jboss/keycloak/bin/standalone.sh -Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=inuse-${IMPORT_FILE}
 fi
 
 if [ $KEYCLOAK_USER ] && [ $KEYCLOAK_PASSWORD ]; then
