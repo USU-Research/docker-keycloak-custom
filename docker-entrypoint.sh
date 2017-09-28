@@ -13,7 +13,6 @@ fi
 
 if [ $EXPORT_FILE ] ; then
     exec /opt/jboss/keycloak/bin/standalone.sh -Dkeycloak.migration.action=export -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=$EXPORT_FILE
-    rm $EXPORT_FILE
 fi
 
 if [ $IMPORT_FILE ] ; then
