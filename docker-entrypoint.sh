@@ -11,11 +11,12 @@ if [ -d "$CUSTOM_THEMES" ]; then
     cp -r ${CUSTOM_THEMES}/* /opt/jboss/keycloak/themes
 fi
 
-if [ $EXPORT_FILE ] ; then
+if [ $EXPORT_FILE ]; then
     exec /opt/jboss/keycloak/bin/standalone.sh -Dkeycloak.migration.action=export -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=$EXPORT_FILE
 fi
 
-if [ -e $IMPORT_FILE ] ; then
+if [ $IMPORT_FILE ] && [ -e $IMPORT_FILE ]; then
+    echo "importing ${IMPORT_FILE} ..."
     mv $IMPORT_FILE used-${IMPORT_FILE}
     exec /opt/jboss/keycloak/bin/standalone.sh -Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=used-${IMPORT_FILE}
 fi
