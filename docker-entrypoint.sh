@@ -17,8 +17,8 @@ fi
 
 if [ $IMPORT_FILE ] && [ -e $IMPORT_FILE ]; then
     echo "importing ${IMPORT_FILE} ..."
-    mv $IMPORT_FILE used-${IMPORT_FILE}
-    exec /opt/jboss/keycloak/bin/standalone.sh -Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=used-${IMPORT_FILE}
+    mv $IMPORT_FILE ${IMPORT_FILE}-used
+    exec /opt/jboss/keycloak/bin/standalone.sh -Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=${IMPORT_FILE}-used
 fi
 
 if [ $KEYCLOAK_USER ] && [ $KEYCLOAK_PASSWORD ]; then
