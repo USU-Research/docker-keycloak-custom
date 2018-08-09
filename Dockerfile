@@ -1,4 +1,4 @@
-FROM jboss/keycloak-postgres:4.1.0.Final
+FROM jboss/keycloak-postgres:4.2.1.Final
 
 USER root
 
